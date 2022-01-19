@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+// Se importa para conectar el estado global
+import { connect } from "react-redux";
 
 const Productos = ({ productos, agregarProductoAlCarrito }) => {
   return (
@@ -63,4 +65,12 @@ const Boton = styled.button`
   }
 `;
 
-export default Productos;
+const mapStateToProps = (estado) => {
+  return {
+    //Le estamos pasando el estado global y accedemos a productos con 'estado.productos'
+    productos: estado.productos,
+  };
+};
+
+// mapStateToProps : queremos mapear nuestro estado global, pasarle las propiedades y queremos pasarselas a 'Productos'
+export default connect(mapStateToProps)(Productos);
