@@ -72,5 +72,20 @@ const mapStateToProps = (estado) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // Funcion agregarProductoAlCarrito
+    agregarProductoAlCarrito: (idProductoAAgregar, nombre) => {
+      // Le estamos enviando la accion dentro de dispatch
+      dispatch({
+        type: "AGREGAR_PRODUCTO_AL_CARRITO",
+        idProductoAAgregar: idProductoAAgregar,
+        nombre: nombre,
+      });
+    },
+  };
+};
+
 // mapStateToProps : queremos mapear nuestro estado global, pasarle las propiedades y queremos pasarselas a 'Productos'
-export default connect(mapStateToProps)(Productos);
+// mapDispatchToProps : le pasamos una funcion que va a modificar el estado
+export default connect(mapStateToProps, mapDispatchToProps)(Productos);
